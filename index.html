@@ -17,6 +17,8 @@
       --text: #0f172a; /* slate-900 */
       --muted: #475569; /* slate-600 */
       --ring: 0 0 0 3px rgba(16,185,129,.35);
+      /* Nytt: styr hur bilden anpassas. 'contain' visar hela bilden, 'cover' fyller skärmen. */
+      --fit: contain;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -24,7 +26,9 @@
 
     /* Scen: bilden är responsiv, vi positionerar hotspots med procent så de stämmer i både mobil och desktop */
     .scene{position:fixed;inset:0;overflow:hidden}
-    .bg{position:absolute;inset:0;background-image:var(--bg-url);background-size:cover;background-position:center;filter:saturate(105%) contrast(102%)}
+    .bg{position:absolute;inset:0;background-image:var(--bg-url);background-size:var(--fit);background-position:center center;background-repeat:no-repeat;filter:saturate(105%) contrast(102%)}
+    /* Suddig bakgrundsfyllning bakom bilden så "svarta kanter" blir snygg blur i stället */
+    .bg::before{content:"";position:absolute;inset:-10%;background-image:var(--bg-url);background-size:cover;background-position:center;filter:blur(30px) brightness(0.9);transform:scale(1.1);z-index:-1;}
     .scrim{position:absolute;inset:0;background:var(--overlay)}
 
     /* Titel överst */
@@ -61,7 +65,13 @@
 
     /* Mindre skärmar: lite bredare hotspots för lättare träff */
     @media (max-width:520px){
+      /* På små skärmar fyller vi hellre skärmen än visar hela bilden */
+      :root{ --fit: cover; }
       .hs-vigsel{width:60vw;height:8vh;left:5vw}
+      .hs-fest  {width:56vw;height:8vh;left:5vw}
+      .hs-info  {width:52vw;height:8vh;left:5vw}
+      .hs-osa   {width:48vw;height:8vh;left:5vw}
+    }
       .hs-fest  {width:56vw;height:8vh;left:5vw}
       .hs-info  {width:52vw;height:8vh;left:5vw}
       .hs-osa   {width:48vw;height:8vh;left:5vw}
