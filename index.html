@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Min GitHub-sida</title>
+  <meta name="description" content="En enkel, responsiv startsida publicerad via GitHub Pages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0e14;--card:#121826;--text:#e5e7eb;--muted:#9ca3af;--acc:#7c3aed;--acc2:#22d3ee}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(124,58,237,.30),transparent 60%),radial-gradient(900px 500px at -10% 20%,rgba(34,211,238,.25),transparent 55%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
+    a{color:inherit}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(11,14,20,.9),rgba(11,14,20,.5) 70%,transparent);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(255,255,255,.05);z-index:20}
+    .container{max-width:1000px;margin:0 auto;padding:0 1.2rem}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .nav a{opacity:.85;text-decoration:none;margin-left:1rem}
+    .nav a:hover{opacity:1}
+    .btn{display:inline-block;padding:.75rem 1rem;border-radius:14px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#08111c;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(124,58,237,.35),0 2px 6px rgba(34,211,238,.25)}
+    .hero{padding:6rem 0 4rem;text-align:center}
+    .hero h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.15;margin:.25rem 0}
+    .hero p{max-width:680px;margin:0.75rem auto 1.5rem;color:var(--muted);font-size:1.05rem}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted);font-size:.9rem}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem}
+    .card{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:1.25rem}
+    .card h3{margin:.25rem 0 .25rem}
+    .card p{color:var(--muted)}
+    .projects .card{transition:transform .2s ease, box-shadow .2s ease}
+    .projects .card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+    .projects .card footer{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .tag{padding:.35rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-size:.85rem;color:var(--muted)}
+    .cta{display:flex;gap:.8rem;justify-content:center;margin-top:1rem}
+    .section{padding:3rem 0}
+    .section h2{font-size:1.6rem;margin:0 0 .6rem}
+    .footer{padding:2rem 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);margin-top:2rem}
+    @media (min-width:720px){
+      .card--span-6{grid-column:span 6}
+      .card--span-4{grid-column:span 4}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">⚡ MinSida</div>
+      <nav>
+        <a href="#om">Om</a>
+        <a href="#projekt">Projekt</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="btn" href="#kontakt">Säg hej</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="badge">🚀 Publicerad med <strong>GitHub Pages</strong></span>
+      <h1>Hej! Jag bygger saker på webben.</h1>
+      <p>Byt ut den här texten mot din egen pitch. Lägg till projekt nedan, peka ett eget domännamn hit och ha en snygg personlig sida på några minuter.</p>
+      <div class="cta">
+        <a class="btn" href="#projekt">Visa mina projekt</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">Öppna GitHub</a>
+      </div>
+    </section>
+
+    <section class="section" id="om">
+      <h2>Om mig</h2>
+      <div class="grid">
+        <article class="card card--span-6">
+          <h3>Vem är jag?</h3>
+          <p>Jag heter <strong>Ditt Namn</strong> och jobbar med <em>din grej här</em>. Jag gillar webbutveckling, design och kaffe.</p>
+        </article>
+        <article class="card card--span-6">
+          <h3>Vad gör jag?</h3>
+          <p>Jag bygger <strong>enkla, snabba hemsidor</strong> och små projekt. På fritiden lär jag mig nya verktyg och experimenterar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section projects" id="projekt">
+      <h2>Utvalda projekt</h2>
+      <div class="grid">
+        <article class="card card--span-4">
+          <h3>Projekt A</h3>
+          <p>Kort beskrivning av projekt A. Vad gör det? Varför är det användbart?</p>
+          <footer>
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+          </footer>
+        </article>
+        <article class="card card--span-4">
+          <h3>Projekt B</h3>
+          <p>Kort beskrivning av projekt B. Lägg gärna till en länk till koden när du publicerat.</p>
+          <footer>
+            <span class="tag">API</span><span class="tag">UI</span>
+          </footer>
+        </article>
+        <article class="card card--span-4">
+          <h3>Projekt C</h3>
+          <p>En liten demo, verktyg eller hobby-app. Byt ut texten och gör den till din.</p>
+          <footer>
+            <span class="tag">Open Source</span>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <h2>Kontakt</h2>
+      <div class="grid">
+        <article class="card">
+          <p>📧 <a href="mailto:du@exempel.se">du@exempel.se</a> · 🐦 <a href="#" target="_blank" rel="noreferrer">@dittnick</a> · 💼 <a href="#" target="_blank" rel="noreferrer">LinkedIn</a></p>
+          <p>Vill du prata om ett projekt eller bara säga hej? Skicka ett mail!</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <small>© <span id="year"></span> Ditt Namn. Hostad på GitHub Pages.</small>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Sätter aktuellt år automatiskt
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Mjuk scroll för interna länkar
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href');
+        if(href.length>1){e.preventDefault();document.querySelector(href).scrollIntoView({behavior:'smooth'});}
+      })
+    })
+  </script>
+</body>
+</html>
