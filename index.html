@@ -3,137 +3,188 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Min GitHub-sida</title>
-  <meta name="description" content="En enkel, responsiv startsida publicerad via GitHub Pages." />
+  <title>Alice ♡ Viktor – Bröllop</title>
+  <meta name="description" content="Bröllopssida för Alice och Viktor – information om vigsel, fest, praktiskt och OSA." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b0e14;--card:#121826;--text:#e5e7eb;--muted:#9ca3af;--acc:#7c3aed;--acc2:#22d3ee}
-    *{box-sizing:border-box}html,body{height:100%}
-    body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(124,58,237,.30),transparent 60%),radial-gradient(900px 500px at -10% 20%,rgba(34,211,238,.25),transparent 55%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
-    a{color:inherit}
-    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(11,14,20,.9),rgba(11,14,20,.5) 70%,transparent);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(255,255,255,.05);z-index:20}
-    .container{max-width:1000px;margin:0 auto;padding:0 1.2rem}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
-    .brand{font-weight:800;letter-spacing:.3px}
-    .nav a{opacity:.85;text-decoration:none;margin-left:1rem}
-    .nav a:hover{opacity:1}
-    .btn{display:inline-block;padding:.75rem 1rem;border-radius:14px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#08111c;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(124,58,237,.35),0 2px 6px rgba(34,211,238,.25)}
-    .hero{padding:6rem 0 4rem;text-align:center}
-    .hero h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.15;margin:.25rem 0}
-    .hero p{max-width:680px;margin:0.75rem auto 1.5rem;color:var(--muted);font-size:1.05rem}
-    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted);font-size:.9rem}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem}
-    .card{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:1.25rem}
-    .card h3{margin:.25rem 0 .25rem}
-    .card p{color:var(--muted)}
-    .projects .card{transition:transform .2s ease, box-shadow .2s ease}
-    .projects .card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
-    .projects .card footer{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
-    .tag{padding:.35rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-size:.85rem;color:var(--muted)}
-    .cta{display:flex;gap:.8rem;justify-content:center;margin-top:1rem}
-    .section{padding:3rem 0}
-    .section h2{font-size:1.6rem;margin:0 0 .6rem}
-    .footer{padding:2rem 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);margin-top:2rem}
-    @media (min-width:720px){
-      .card--span-6{grid-column:span 6}
-      .card--span-4{grid-column:span 4}
+    :root{
+      --bg-url: url('assets/akvarell-brollop.jpg'); /* Byt till din bilds sökväg */
+      --overlay: rgba(10,16,24,.35);
+      --panel: #ffffff;
+      --text: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --acc: #14532d; /* emerald-900 */
+      --ring: 0 0 0 3px rgba(34,197,94,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);}
+
+    /* Bakgrund */
+    .bg{
+      position:fixed;inset:0;z-index:-1;
+      background-image: var(--bg-url);
+      background-size:cover;background-position:center; background-attachment: fixed;
+      filter: saturate(105%) contrast(102%);
+    }
+    .scrim{position:fixed;inset:0;background:var(--overlay)}
+
+    /* Titel uppe i bild */
+    header{
+      position:fixed;top:0;left:0;right:0;padding:1.2rem 1rem;display:flex;justify-content:center;pointer-events:none;
+    }
+    .title{
+      font-family:Marcellus,serif;font-size:clamp(1.6rem,6vw,3rem);letter-spacing:.5px;
+      color:#0b0b0b;background:rgba(255,255,255,.7);backdrop-filter: blur(4px);
+      border-radius:16px;padding:.35rem .9rem;border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 10px 30px rgba(0,0,0,.15);
+    }
+
+    /* Skyltar (klickbara) */
+    .signs{position:fixed;left:clamp(.5rem,4vw,2rem);bottom:clamp(.5rem,5vh,2rem);display:flex;flex-direction:column;gap:.6rem;}
+    .sign{
+      display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;user-select:none;
+      background:linear-gradient(180deg,#fff,#f2f2f2); color:#111; font-weight:700; letter-spacing:.8px;
+      padding:.7rem 1rem;border-radius:10px; border:1px solid rgba(0,0,0,.12);
+      transform:rotate(var(--rot, -2deg)); transform-origin: left center;
+      text-transform:uppercase; font-size:clamp(.9rem,2.8vw,1rem);
+      box-shadow:0 10px 24px rgba(0,0,0,.15);
+    }
+    .sign:hover{box-shadow:0 14px 32px rgba(0,0,0,.22)}
+    .sign::before{
+      content:"";width:6px;height:26px;background:#7a5b3a;border:1px solid rgba(0,0,0,.15);
+      border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+    }
+    .sign[data-k="vigsel"]{--rot:-1deg}
+    .sign[data-k="fest"]  {--rot:1.5deg}
+    .sign[data-k="info"]  {--rot:-3deg}
+    .sign[data-k="osa"]   {--rot:2deg}
+
+    /* Dialog/Panel */
+    dialog{border:none;border-radius:22px;padding:0;box-shadow:0 30px 80px rgba(0,0,0,.45);width:min(680px,92vw)}
+    dialog::backdrop{background:rgba(2,6,12,.55)}
+    .panel{background:var(--panel);border-radius:22px;overflow:hidden}
+    .panel header{position:sticky;top:0;padding:1rem 1.1rem;display:flex;justify-content:space-between;align-items:center;background:#fafafa;border-bottom:1px solid #eee;pointer-events:auto}
+    .panel h2{margin:0;font-size:1.25rem}
+    .panel .content{padding:1rem 1.1rem;color:var(--muted);line-height:1.7}
+    .x{appearance:none;border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:.45rem .7rem;cursor:pointer;font-weight:600}
+    .x:focus{outline:none;box-shadow:var(--ring)}
+
+    /* Länkar/knappar i text */
+    a.btn{display:inline-block;margin-top:.4rem;padding:.6rem .9rem;border-radius:12px;border:1px solid #e5e7eb;text-decoration:none;color:#111;background:#fff}
+    a.btn:focus{outline:none;box-shadow:var(--ring)}
+
+    /* Safeties för små skärmar */
+    @media (max-width:480px){
+      .sign{padding:.6rem .85rem}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">⚡ MinSida</div>
-      <nav>
-        <a href="#om">Om</a>
-        <a href="#projekt">Projekt</a>
-        <a href="#kontakt">Kontakt</a>
-        <a class="btn" href="#kontakt">Säg hej</a>
-      </nav>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header aria-label="Titel"><div class="title">Alice ♡ Viktor</div></header>
+
+  <!-- Skyltar -->
+  <nav class="signs" aria-label="Navigationsskyltar">
+    <button class="sign" data-k="vigsel" aria-haspopup="dialog" aria-controls="dlg-vigsel">Vigsel</button>
+    <button class="sign" data-k="fest"   aria-haspopup="dialog" aria-controls="dlg-fest">Fest</button>
+    <button class="sign" data-k="info"   aria-haspopup="dialog" aria-controls="dlg-info">Info</button>
+    <button class="sign" data-k="osa"    aria-haspopup="dialog" aria-controls="dlg-osa">OSA</button>
+  </nav>
+
+  <!-- Dialoger -->
+  <dialog id="dlg-vigsel">
+    <div class="panel">
+      <header>
+        <h2>Vigsel</h2>
+        <button class="x" data-close>Stäng</button>
+      </header>
+      <div class="content">
+        <p>Vigseln äger rum i den vita kyrkan vid vattnet. Tid: <strong>14:00</strong>. Samling från <strong>13:30</strong>.</p>
+        <p>Adress: Kyrkvägen 1. Parkering finns vid hembygdsgården (5 min promenad).</p>
+      </div>
     </div>
-  </header>
+  </dialog>
 
-  <main class="container">
-    <section class="hero">
-      <span class="badge">🚀 Publicerad med <strong>GitHub Pages</strong></span>
-      <h1>Hej! Jag bygger saker på webben.</h1>
-      <p>Byt ut den här texten mot din egen pitch. Lägg till projekt nedan, peka ett eget domännamn hit och ha en snygg personlig sida på några minuter.</p>
-      <div class="cta">
-        <a class="btn" href="#projekt">Visa mina projekt</a>
-        <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">Öppna GitHub</a>
+  <dialog id="dlg-fest">
+    <div class="panel">
+      <header>
+        <h2>Fest</h2>
+        <button class="x" data-close>Stäng</button>
+      </header>
+      <div class="content">
+        <p>Efter vigseln fortsätter vi med bröllopsfest i festlokalen vid småbåtshamnen.</p>
+        <p>Middag ~ <strong>17:30</strong>, dans från <strong>20:00</strong>.</p>
+        <p>Klädsel: Kavaj.</p>
       </div>
-    </section>
+    </div>
+  </dialog>
 
-    <section class="section" id="om">
-      <h2>Om mig</h2>
-      <div class="grid">
-        <article class="card card--span-6">
-          <h3>Vem är jag?</h3>
-          <p>Jag heter <strong>Ditt Namn</strong> och jobbar med <em>din grej här</em>. Jag gillar webbutveckling, design och kaffe.</p>
-        </article>
-        <article class="card card--span-6">
-          <h3>Vad gör jag?</h3>
-          <p>Jag bygger <strong>enkla, snabba hemsidor</strong> och små projekt. På fritiden lär jag mig nya verktyg och experimenterar.</p>
-        </article>
+  <dialog id="dlg-info">
+    <div class="panel">
+      <header>
+        <h2>Praktisk info</h2>
+        <button class="x" data-close>Stäng</button>
+      </header>
+      <div class="content">
+        <ul>
+          <li>Transport mellan kyrka och fest erbjuds – meddela vid OSA.</li>
+          <li>Presenter: Vi önskar oss upplevelser och minnen.</li>
+          <li>Hashtag: <strong>#AliceViktor</strong></li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </dialog>
 
-    <section class="section projects" id="projekt">
-      <h2>Utvalda projekt</h2>
-      <div class="grid">
-        <article class="card card--span-4">
-          <h3>Projekt A</h3>
-          <p>Kort beskrivning av projekt A. Vad gör det? Varför är det användbart?</p>
-          <footer>
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
-          </footer>
-        </article>
-        <article class="card card--span-4">
-          <h3>Projekt B</h3>
-          <p>Kort beskrivning av projekt B. Lägg gärna till en länk till koden när du publicerat.</p>
-          <footer>
-            <span class="tag">API</span><span class="tag">UI</span>
-          </footer>
-        </article>
-        <article class="card card--span-4">
-          <h3>Projekt C</h3>
-          <p>En liten demo, verktyg eller hobby-app. Byt ut texten och gör den till din.</p>
-          <footer>
-            <span class="tag">Open Source</span>
-          </footer>
-        </article>
+  <dialog id="dlg-osa">
+    <div class="panel">
+      <header>
+        <h2>OSA</h2>
+        <button class="x" data-close>Stäng</button>
+      </header>
+      <div class="content">
+        <p>Osa senast <strong>1 maj</strong>.</p>
+        <p>Maila oss: <a class="btn" href="mailto:aliceochviktor@example.com?subject=OSA%20br%C3%B6llop">Skicka OSA</a></p>
+        <p>Specialkost? Skriv i mailet.</p>
       </div>
-    </section>
-
-    <section class="section" id="kontakt">
-      <h2>Kontakt</h2>
-      <div class="grid">
-        <article class="card">
-          <p>📧 <a href="mailto:du@exempel.se">du@exempel.se</a> · 🐦 <a href="#" target="_blank" rel="noreferrer">@dittnick</a> · 💼 <a href="#" target="_blank" rel="noreferrer">LinkedIn</a></p>
-          <p>Vill du prata om ett projekt eller bara säga hej? Skicka ett mail!</p>
-        </article>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container">
-        <small>© <span id="year"></span> Ditt Namn. Hostad på GitHub Pages.</small>
-      </div>
-    </footer>
-  </main>
+    </div>
+  </dialog>
 
   <script>
-    // Sätter aktuellt år automatiskt
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Mjuk scroll för interna länkar
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const href=a.getAttribute('href');
-        if(href.length>1){e.preventDefault();document.querySelector(href).scrollIntoView({behavior:'smooth'});}
+    // Öppna/stäng dialoger
+    const map = {
+      vigsel: document.getElementById('dlg-vigsel'),
+      fest:   document.getElementById('dlg-fest'),
+      info:   document.getElementById('dlg-info'),
+      osa:    document.getElementById('dlg-osa')
+    };
+    document.querySelectorAll('.sign').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const k = btn.dataset.k; const dlg = map[k];
+        if (!dlg) return;
+        dlg.showModal();
+        const firstClose = dlg.querySelector('[data-close]');
+        if (firstClose) firstClose.focus();
+      })
+    })
+    document.querySelectorAll('dialog [data-close]').forEach(x=>{
+      x.addEventListener('click', e=> e.target.closest('dialog').close());
+    })
+    // Stäng när man klickar utanför panelen
+    document.querySelectorAll('dialog').forEach(dlg=>{
+      dlg.addEventListener('click', (e)=>{
+        const r = dlg.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+          dlg.close();
+        }
       })
     })
   </script>
+
+  <!-- Tips: lägg bilden i assets/akvarell-brollop.jpg och uppdatera --bg-url i :root ovan. -->
 </body>
 </html>
