@@ -10,77 +10,80 @@
       height: 100%;
       margin: 0;
       scroll-behavior: smooth;
-      background: #000; /* svart bakgrund */
+      background: #000;
     }
     .bg-wrap {
       position: fixed;
       inset: 0;
-      z-index: 0; /* lägg bakom innehåll men ovanför body */
+      z-index: 0;
       overflow: hidden;
-      background: #000; /* säkerställ svart runtom bilden */
+      background: #000;
     }
     .hero-bg {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 35%; /* lyft fokus lite uppåt så ansikten hamnar i centrum på desktop */
+      object-position: center 35%;
       transition: filter 0.3s ease;
       display: block;
-      filter: brightness(65%); /* synlig direkt vid laddning */
+      filter: brightness(65%);
     }
     @media (max-width: 768px) {
       .hero-bg { object-position: center 45%; }
     }
-
-    .fade-in {
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      visibility: hidden;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .modal-bg.active { visibility: visible; opacity: 1; }
   </style>
 </head>
 <body class="bg-black text-white font-sans">
-  <!-- Fixerad bakgrundsbild -->
   <div class="bg-wrap">
     <img id="heroImage" src="assets/IMG_1395.jpg" alt="Alice och Viktor" class="hero-bg" />
   </div>
 
-  <!-- Hero Section -->
   <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
     <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
     <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
   </header>
 
-  <!-- Main Content -->
   <main class="relative z-10 max-w-2xl mx-auto px-6 py-16 space-y-12 text-center">
     <section class="fade-in">
       <h2 class="text-2xl font-medium mb-4">Vigsel</h2>
-      <p class="leading-relaxed">
-        Vi gifter oss kl. <strong>14:00</strong> i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.
-      </p>
+      <p class="leading-relaxed">Vi gifter oss kl. <strong>14:00</strong> i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.</p>
     </section>
 
     <section class="fade-in">
       <h2 class="text-2xl font-medium mb-4">Fest</h2>
-      <p class="leading-relaxed">
-        Efter vigseln firar vi vidare på <strong>Strömsborg i Lennartsfors</strong> med mat, musik och dans.
-      </p>
+      <p class="leading-relaxed">Efter vigseln firar vi vidare på <strong>Strömsborg i Lennartsfors</strong> med mat, musik och dans.</p>
     </section>
 
     <section class="fade-in">
       <h2 class="text-2xl font-medium mb-4">OSA</h2>
-      <p class="leading-relaxed">
-        Vänligen svara senast <strong>1 mars 2026</strong>.<br />
-        Skicka ditt svar till <a href="mailto:aliceochviktor@example.com" class="underline hover:text-gray-300">aliceochviktor@example.com</a>
-      </p>
+      <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
+      <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Anmäl dig här</button>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Popup med Google Form -->
+  <div id="formModal" class="modal-bg">
+    <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
+      <button id="closeFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform?embedded=true" width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Laddar…</iframe>
+    </div>
+  </div>
+
   <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
     <p>© 2026 Alice & Viktor</p>
   </footer>
@@ -88,11 +91,18 @@
   <script>
     const heroImage = document.getElementById('heroImage');
     const fadeEls = document.querySelectorAll('.fade-in');
+    const formModal = document.getElementById('formModal');
+    const openFormBtn = document.getElementById('openFormBtn');
+    const closeFormBtn = document.getElementById('closeFormBtn');
+
+    openFormBtn.addEventListener('click', () => formModal.classList.add('active'));
+    closeFormBtn.addEventListener('click', () => formModal.classList.remove('active'));
+    formModal.addEventListener('click', (e) => { if (e.target === formModal) formModal.classList.remove('active'); });
 
     let ticking = false;
     function onScroll() {
       const scrollY = window.scrollY;
-      const blurAmount = Math.min(scrollY / 25, 28); // ännu mer blur vid scroll (upp till 28px)
+      const blurAmount = Math.min(scrollY / 25, 28);
       heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
 
       fadeEls.forEach(el => {
@@ -111,7 +121,6 @@
       }
     }, { passive: true });
 
-    // Kör en gång vid start för att sätta initialt tillstånd
     window.addEventListener('load', onScroll);
   </script>
 </body>
