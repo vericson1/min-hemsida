@@ -23,7 +23,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20%; /* justerad för att flytta fokus uppåt */
+      object-position: center 20%;
       transition: filter 0.3s ease;
       display: block;
       filter: brightness(65%);
@@ -58,29 +58,61 @@
     <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
   </header>
 
-  <main class="relative z-10 max-w-2xl mx-auto px-6 py-16 space-y-12 text-center">
+  <main class="relative z-10 max-w-3xl mx-auto px-6 py-16 space-y-16 text-center">
+    <!-- Vigsel -->
     <section class="fade-in">
-      <h2 class="text-2xl font-medium mb-4">Vigsel</h2>
-      <p class="leading-relaxed">Vi gifter oss kl. <strong>14:00</strong> i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.</p>
+      <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
+      <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka" class="mx-auto rounded-lg shadow-lg mb-4 w-full max-w-md" />
+      <p class="leading-relaxed">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
     </section>
 
+    <!-- Fest -->
     <section class="fade-in">
-      <h2 class="text-2xl font-medium mb-4">Fest</h2>
-      <p class="leading-relaxed">Efter vigseln firar vi vidare på <strong>Strömsborg i Lennartsfors</strong> med mat, musik och dans.</p>
+      <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
+      <p class="leading-relaxed mb-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
+      <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
+      <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
+      <p class="mb-6">
+        Aaa – 0702223344<br>
+        Bbb – 0703334455
+      </p>
+      <button id="openSpeechFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Anmäl bidrag till festen</button>
     </section>
 
+    <!-- OSA -->
     <section class="fade-in">
-      <h2 class="text-2xl font-medium mb-4">OSA</h2>
+      <h2 class="text-3xl font-medium mb-4">OSA</h2>
       <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
       <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Anmäl dig här</button>
     </section>
+
+    <!-- Övrig info -->
+    <section class="fade-in">
+      <h2 class="text-3xl font-medium mb-4">Övrig information</h2>
+      <p class="mb-4">Här kan ni hitta boende:</p>
+      <ul class="space-y-2">
+        <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
+        <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
+        <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
+      </ul>
+      <p class="mt-6 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
+      <a href="https://presentlistan.nu/FB81E5/" target="_blank" class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Önskelista</a>
+    </section>
   </main>
 
-  <!-- Popup med Google Form -->
+  <!-- Popup: OSA-formulär -->
   <div id="formModal" class="modal-bg">
     <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
       <button id="closeFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform?embedded=true" width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Laddar…</iframe>
+    </div>
+  </div>
+
+  <!-- Popup: Festbidrag-formulär -->
+  <div id="speechModal" class="modal-bg">
+    <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
+      <button id="closeSpeechFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Läser in …</iframe>
     </div>
   </div>
 
@@ -94,10 +126,17 @@
     const formModal = document.getElementById('formModal');
     const openFormBtn = document.getElementById('openFormBtn');
     const closeFormBtn = document.getElementById('closeFormBtn');
+    const speechModal = document.getElementById('speechModal');
+    const openSpeechFormBtn = document.getElementById('openSpeechFormBtn');
+    const closeSpeechFormBtn = document.getElementById('closeSpeechFormBtn');
 
     openFormBtn.addEventListener('click', () => formModal.classList.add('active'));
     closeFormBtn.addEventListener('click', () => formModal.classList.remove('active'));
     formModal.addEventListener('click', (e) => { if (e.target === formModal) formModal.classList.remove('active'); });
+
+    openSpeechFormBtn.addEventListener('click', () => speechModal.classList.add('active'));
+    closeSpeechFormBtn.addEventListener('click', () => speechModal.classList.remove('active'));
+    speechModal.addEventListener('click', (e) => { if (e.target === speechModal) speechModal.classList.remove('active'); });
 
     let ticking = false;
     function onScroll() {
