@@ -1,32 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Alice & Viktor – 16 maj 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root { --ink:#2274A5; }
-body {
-margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center;
-background: #fff; font-family: 'Dancing Script', cursive; color: var(--ink);
-}
-.frame {
-padding: 3rem 5rem; text-align: center; max-width: 90vw; box-sizing: border-box; position: relative;
-}
-
-
-h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin: 0 0 1rem; position: relative; z-index: 1; }
-p { font-size: clamp(1.5rem, 5vw, 2rem); margin: 0; position: relative; z-index: 1; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice & Viktor - Bröllop 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="frame">
-<!-- Penseldragen röd ram som inte kräver externa filer -->
+<body class="bg-white text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="relative h-[80vh] w-full overflow-hidden">
+    <img src="IMG_1395.jpg" alt="Alice och Viktor" class="object-cover w-full h-full brightness-75" />
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+      <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
+      <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
+    </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="max-w-2xl mx-auto px-6 py-16 space-y-12 text-center">
+    <section>
+      <h2 class="text-2xl font-medium mb-4">Vigsel</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Vi gifter oss kl. <strong>14:00</strong> i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.
+      </p>
+    </section>
 
-<h1>Alice &amp; Viktor</h1>
-<p>16 maj 2026</p>
-</div>
+    <section>
+      <h2 class="text-2xl font-medium mb-4">Fest</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Efter vigseln firar vi vidare på <strong>Strömsborg i Lennartsfors</strong> med mat, musik och dans.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-medium mb-4">OSA</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Vänligen svara senast <strong>1 mars 2026</strong>.<br/>
+        Skicka ditt svar till <a href="mailto:aliceochviktor@example.com" class="underline hover:text-gray-800">aliceochviktor@example.com</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-sm text-gray-500 border-t">
+    <p>© 2026 Alice & Viktor</p>
+  </footer>
 </body>
 </html>
