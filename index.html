@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8" />
@@ -6,23 +6,32 @@
   <title>Alice & Viktor - Bröllop 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body, html {
+    html, body {
       height: 100%;
       margin: 0;
       scroll-behavior: smooth;
-      background-color: #000; /* svart bakgrund */
+      background: #000; /* svart bakgrund */
+    }
+    .bg-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 0; /* lägg bakom innehåll men ovanför body */
+      overflow: hidden;
+      background: #000; /* säkerställ svart runtom bilden */
     }
     .hero-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       object-fit: cover;
-      object-position: center center; /* centrera bilden */
-      z-index: -1;
+      object-position: center 35%; /* lyft fokus lite uppåt så ansikten hamnar i centrum på desktop */
       transition: filter 0.3s ease;
+      display: block;
+      filter: brightness(65%); /* synlig direkt vid laddning */
     }
+    @media (max-width: 768px) {
+      .hero-bg { object-position: center 45%; }
+    }
+
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -35,11 +44,13 @@
   </style>
 </head>
 <body class="bg-black text-white font-sans">
-  <!-- Header Background Image -->
-  <img id="heroImage" src="assets/IMG_1395.jpg" alt="Alice och Viktor" class="hero-bg brightness-75" />
+  <!-- Fixerad bakgrundsbild -->
+  <div class="bg-wrap">
+    <img id="heroImage" src="assets/IMG_1395.jpg" alt="Alice och Viktor" class="hero-bg" />
+  </div>
 
   <!-- Hero Section -->
-  <header class="h-screen flex flex-col items-center justify-center text-center">
+  <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
     <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
     <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
   </header>
@@ -70,7 +81,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center py-8 text-sm text-gray-400 border-t border-gray-700">
+  <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
     <p>© 2026 Alice & Viktor</p>
   </footer>
 
@@ -78,9 +89,10 @@
     const heroImage = document.getElementById('heroImage');
     const fadeEls = document.querySelectorAll('.fade-in');
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    function onScroll() {
       const scrollY = window.scrollY;
-      const blurAmount = Math.min(scrollY / 40, 20); // mer blur vid scroll (max 20px)
+      const blurAmount = Math.min(scrollY / 25, 28); // ännu mer blur vid scroll (upp till 28px)
       heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
 
       fadeEls.forEach(el => {
@@ -89,17 +101,18 @@
           el.classList.add('visible');
         }
       });
-    });
+      ticking = false;
+    }
 
-    // Visa direkt de som redan syns vid start
-    window.addEventListener('load', () => {
-      fadeEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
-      });
-    });
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Kör en gång vid start för att sätta initialt tillstånd
+    window.addEventListener('load', onScroll);
   </script>
 </body>
 </html>
