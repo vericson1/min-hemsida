@@ -31,8 +31,15 @@
     @media (max-width: 768px) {
       .hero-bg { object-position: center 40%; }
     }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .modal-bg {
       position: fixed;
       inset: 0;
@@ -45,9 +52,14 @@
       opacity: 0;
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .modal-bg.active { visibility: visible; opacity: 1; }
+    .modal-bg.active {
+      visibility: visible;
+      opacity: 1;
+      backdrop-filter: blur(6px);
+    }
   </style>
 </head>
+
 <body class="bg-black text-white font-sans">
   <div class="bg-wrap">
     <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
@@ -58,33 +70,55 @@
     <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
   </header>
 
-  <main class="relative z-10 max-w-3xl mx-auto px-6 py-16 space-y-16 text-center">
+  <main class="relative z-10 max-w-4xl mx-auto px-6 py-16 space-y-16 text-center">
+
     <!-- Vigsel -->
     <section class="fade-in">
       <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
-      <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka" class="mx-auto rounded-lg shadow-lg mb-4 w-full max-w-md" />
-      <p class="leading-relaxed">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka" class="mx-auto rounded-lg shadow-lg w-full max-w-md" />
+        <div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2053.932634909167!2d12.2124209!3d59.3072851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46444ad3584e3e07%3A0x22b48d4b30274c12!2sV%C3%A4stra%20F%C3%A5gelviks%20kyrka!5e0!3m2!1ssv!2sse!4v1731180000000!5m2!1ssv!2sse"
+            width="100%" height="300" style="border:0;"
+            allowfullscreen="" loading="lazy" class="rounded-lg shadow-lg"></iframe>
+          <a href="https://goo.gl/maps/7mD6shdNfAsD7zCq5" target="_blank"
+             class="block mt-2 text-sm text-gray-300 hover:text-white underline">Visa i Google Maps</a>
+        </div>
+      </div>
+      <p class="leading-relaxed mt-4">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
     </section>
 
-    <!-- Fest -->
+    <!-- Bröllopsfest -->
     <section class="fade-in">
       <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
-      <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors" class="mx-auto rounded-lg shadow-lg mb-4 w-full max-w-md" />
-      <p class="leading-relaxed mb-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors" class="mx-auto rounded-lg shadow-lg w-full max-w-md" />
+        <div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2055.214028828097!2d12.1504034!3d59.2755839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46444c024ab5efb1%3A0xe5e6a4f0e2385f47!2sStr%C3%B6msborg%2C%20Lennartsfors!5e0!3m2!1ssv!2sse!4v1731180000001!5m2!1ssv!2sse"
+            width="100%" height="300" style="border:0;"
+            allowfullscreen="" loading="lazy" class="rounded-lg shadow-lg"></iframe>
+          <a href="https://goo.gl/maps/C5zW4JpFvX7DtvV69" target="_blank"
+             class="block mt-2 text-sm text-gray-300 hover:text-white underline">Visa i Google Maps</a>
+        </div>
+      </div>
+      <p class="leading-relaxed mb-4 mt-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
       <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
       <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
-      <p class="mb-6">
-        Aaa – 0702223344<br>
-        Bbb – 0703334455
-      </p>
-      <button id="openSpeechFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Anmäl bidrag till festen</button>
+      <p class="mb-6">Aaa – 0702223344<br>Bbb – 0703334455</p>
+      <button id="openSpeechFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+        Anmäl bidrag till festen
+      </button>
     </section>
 
     <!-- OSA -->
     <section class="fade-in">
       <h2 class="text-3xl font-medium mb-4">OSA</h2>
       <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
-      <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Anmäl dig här</button>
+      <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+        Anmäl dig här
+      </button>
     </section>
 
     <!-- Övrig info -->
@@ -97,23 +131,29 @@
         <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
       </ul>
       <p class="mt-6 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
-      <a href="https://presentlistan.nu/FB81E5/" target="_blank" class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Önskelista</a>
+      <a href="https://presentlistan.nu/FB81E5/" target="_blank"
+         class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+         Önskelista
+      </a>
     </section>
+
   </main>
 
-  <!-- Popup: OSA-formulär -->
+  <!-- Popup: OSA -->
   <div id="formModal" class="modal-bg">
     <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
       <button id="closeFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform?embedded=true" width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Laddar…</iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform?embedded=true"
+              width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Laddar…</iframe>
     </div>
   </div>
 
-  <!-- Popup: Festbidrag-formulär -->
+  <!-- Popup: Festbidrag -->
   <div id="speechModal" class="modal-bg">
     <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
       <button id="closeSpeechFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Läser in …</iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform?embedded=true"
+              width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Läser in …</iframe>
     </div>
   </div>
 
@@ -133,34 +173,29 @@
 
     openFormBtn.addEventListener('click', () => formModal.classList.add('active'));
     closeFormBtn.addEventListener('click', () => formModal.classList.remove('active'));
-    formModal.addEventListener('click', (e) => { if (e.target === formModal) formModal.classList.remove('active'); });
+    formModal.addEventListener('click', e => { if (e.target === formModal) formModal.classList.remove('active'); });
 
     openSpeechFormBtn.addEventListener('click', () => speechModal.classList.add('active'));
     closeSpeechFormBtn.addEventListener('click', () => speechModal.classList.remove('active'));
-    speechModal.addEventListener('click', (e) => { if (e.target === speechModal) speechModal.classList.remove('active'); });
+    speechModal.addEventListener('click', e => { if (e.target === speechModal) speechModal.classList.remove('active'); });
 
     let ticking = false;
     function onScroll() {
       const scrollY = window.scrollY;
       const blurAmount = Math.min(scrollY / 25, 28);
       heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
-
       fadeEls.forEach(el => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
+        if (rect.top < window.innerHeight - 100) el.classList.add('visible');
       });
       ticking = false;
     }
-
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(onScroll);
         ticking = true;
       }
     }, { passive: true });
-
     window.addEventListener('load', onScroll);
   </script>
 </body>
