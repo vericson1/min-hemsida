@@ -12,6 +12,7 @@
       background: #000;
       color: #fff;
       font-family: system-ui, sans-serif;
+      scroll-behavior: smooth;
     }
     #mainContent { display: none; opacity: 0; transition: opacity 1s ease; }
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
@@ -24,14 +25,11 @@
       filter: brightness(65%);
       transition: filter 0.3s ease;
     }
-    @media (max-width: 768px) {
-      .hero-bg { object-position: center 40%; }
-    }
   </style>
 </head>
 
 <body>
-  <!-- Inloggningssida -->
+  <!-- Inloggning -->
   <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
     <h1 class="text-3xl mb-6 tracking-wide">Alice & Viktor</h1>
     <p class="mb-4 text-gray-300">Ange lösenord för att gå vidare</p>
@@ -120,17 +118,27 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const PASSWORD = "admin";
       const loginBtn = document.getElementById("loginBtn");
       const passwordInput = document.getElementById("passwordInput");
       const errorMsg = document.getElementById("errorMsg");
       const loginScreen = document.getElementById("loginScreen");
       const mainContent = document.getElementById("mainContent");
-      const PASSWORD = "admin";
+      const fadeEls = document.querySelectorAll(".fade-in");
+      const heroImage = document.getElementById("heroImage");
+
+      function fadeInSections() {
+        fadeEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) el.classList.add("visible");
+        });
+      }
 
       function showMainContent() {
         loginScreen.style.display = "none";
         mainContent.style.display = "block";
         requestAnimationFrame(() => mainContent.style.opacity = "1");
+        fadeInSections(); // säkerställ att sektioner syns direkt
       }
 
       function checkPassword() {
@@ -138,13 +146,20 @@
           showMainContent();
         } else {
           errorMsg.classList.remove("hidden");
-          errorMsg.textContent = "Fel lösenord, försök igen.";
         }
       }
 
       loginBtn.addEventListener("click", checkPassword);
       passwordInput.addEventListener("keypress", e => {
         if (e.key === "Enter") checkPassword();
+      });
+
+      // Lägg till scroll-effekten efter inloggning
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        const blurAmount = Math.min(scrollY / 25, 28);
+        heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
+        fadeInSections();
       });
     });
   </script>
