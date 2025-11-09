@@ -9,28 +9,11 @@
     html, body {
       height: 100%;
       margin: 0;
-      scroll-behavior: smooth;
       background: #000;
+      color: #fff;
+      font-family: system-ui, sans-serif;
     }
-    .bg-wrap {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      background: #000;
-    }
-    .hero-bg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 25%;
-      transition: filter 0.3s ease;
-      display: block;
-      filter: brightness(65%);
-    }
-    @media (max-width: 768px) {
-      .hero-bg { object-position: center 40%; }
-    }
+    #mainContent { display: none; }
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .modal-bg {
@@ -47,142 +30,134 @@
       backdrop-filter: blur(6px);
     }
     .modal-bg.active { visibility: visible; opacity: 1; }
+    .hero-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: brightness(65%);
+      transition: filter 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .hero-bg { object-position: center 40%; }
+    }
   </style>
 </head>
 
-<body class="bg-black text-white font-sans">
-  <div class="bg-wrap">
-    <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
+<body>
+  <!-- Inloggningssida -->
+  <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
+    <h1 class="text-3xl mb-6 tracking-wide">Alice & Viktor</h1>
+    <p class="mb-4 text-gray-300">Ange lösenord för att gå vidare</p>
+    <input id="passwordInput" type="password" placeholder="Lösenord"
+           class="text-black px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white w-64 text-center">
+    <button id="loginBtn" class="mt-4 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition">Logga in</button>
+    <p id="errorMsg" class="text-red-400 mt-4 hidden">Fel lösenord, försök igen.</p>
   </div>
 
-  <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
-    <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
-    <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
-  </header>
+  <!-- Hemsidans innehåll -->
+  <div id="mainContent">
+    <div class="bg-wrap fixed inset-0 z-0 overflow-hidden bg-black">
+      <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
+    </div>
 
-  <main class="relative z-10 max-w-4xl mx-auto px-6 py-16 space-y-16 text-center">
+    <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
+      <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
+      <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
+    </header>
 
-    <!-- Vigsel -->
-    <section class="fade-in">
-      <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka"
-             class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
-        <div>
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-16 space-y-16 text-center">
+      <!-- Vigsel -->
+      <section class="fade-in">
+        <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka"
+               class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
           <iframe
             src="https://www.google.com/maps?q=59.44957644637509,11.847544765254858&hl=sv&z=15&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-      </div>
-      <p class="leading-relaxed mt-4">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
-    </section>
+        <p class="leading-relaxed mt-4">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
+      </section>
 
-    <!-- Bröllopsfest -->
-    <section class="fade-in">
-      <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors"
-             class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
-        <div>
+      <!-- Bröllopsfest -->
+      <section class="fade-in">
+        <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors"
+               class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
           <iframe
             src="https://www.google.com/maps?q=59.319143511136176,11.901954306914318&hl=sv&z=15&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-      </div>
-      <p class="leading-relaxed mb-4 mt-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
-      <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
-      <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
-      <p class="mb-6">Aaa – 0702223344<br>Bbb – 0703334455</p>
-      <button id="openSpeechFormBtn"
-              class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
-              Anmäl bidrag till festen
-      </button>
-    </section>
+        <p class="leading-relaxed mb-4 mt-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
+        <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
+        <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
+        <p class="mb-6">Aaa – 0702223344<br>Bbb – 0703334455</p>
+        <button id="openSpeechFormBtn"
+                class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+                Anmäl bidrag till festen
+        </button>
+      </section>
 
-    <!-- OSA -->
-    <section class="fade-in">
-      <h2 class="text-3xl font-medium mb-4">OSA</h2>
-      <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
-      <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
-        Anmäl dig här
-      </button>
-    </section>
+      <!-- OSA -->
+      <section class="fade-in">
+        <h2 class="text-3xl font-medium mb-4">OSA</h2>
+        <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
+        <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+          Anmäl dig här
+        </button>
+      </section>
 
-    <!-- Övrig info -->
-    <section class="fade-in">
-      <h2 class="text-3xl font-medium mb-4">Övrig information</h2>
-      <p class="mb-4">Här kan ni hitta boende:</p>
-      <ul class="space-y-2">
-        <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
-        <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
-        <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
-      </ul>
-      <p class="mt-6 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
-      <a href="https://presentlistan.nu/FB81E5/" target="_blank"
-         class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
-         Önskelista
-      </a>
-    </section>
-  </main>
+      <!-- Övrig info -->
+      <section class="fade-in">
+        <h2 class="text-3xl font-medium mb-4">Övrig information</h2>
+        <p class="mb-4">Här kan ni hitta boende:</p>
+        <ul class="space-y-2">
+          <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
+          <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
+          <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
+        </ul>
+        <p class="mt-6 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
+        <a href="https://presentlistan.nu/FB81E5/" target="_blank"
+           class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+           Önskelista
+        </a>
+      </section>
+    </main>
 
-  <!-- Popup: OSA -->
-  <div id="formModal" class="modal-bg">
-    <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
-      <button id="closeFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform?embedded=true"
-              width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Laddar…</iframe>
-    </div>
+    <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
+      <p>© 2026 Alice & Viktor</p>
+    </footer>
   </div>
-
-  <!-- Popup: Festbidrag -->
-  <div id="speechModal" class="modal-bg">
-    <div class="bg-black rounded-xl p-4 max-w-3xl w-full relative">
-      <button id="closeSpeechFormBtn" class="absolute top-2 right-3 text-white text-3xl leading-none hover:text-gray-400">&times;</button>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform?embedded=true"
-              width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Läser in …</iframe>
-    </div>
-  </div>
-
-  <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
-    <p>© 2026 Alice & Viktor</p>
-  </footer>
 
   <script>
-    const heroImage = document.getElementById('heroImage');
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const formModal = document.getElementById('formModal');
-    const openFormBtn = document.getElementById('openFormBtn');
-    const closeFormBtn = document.getElementById('closeFormBtn');
-    const speechModal = document.getElementById('speechModal');
-    const openSpeechFormBtn = document.getElementById('openSpeechFormBtn');
-    const closeSpeechFormBtn = document.getElementById('closeSpeechFormBtn');
+    const loginBtn = document.getElementById("loginBtn");
+    const passwordInput = document.getElementById("passwordInput");
+    const errorMsg = document.getElementById("errorMsg");
+    const loginScreen = document.getElementById("loginScreen");
+    const mainContent = document.getElementById("mainContent");
+    const PASSWORD = "admin";
 
-    openFormBtn.addEventListener('click', () => formModal.classList.add('active'));
-    closeFormBtn.addEventListener('click', () => formModal.classList.remove('active'));
-    formModal.addEventListener('click', e => { if (e.target === formModal) formModal.classList.remove('active'); });
-
-    openSpeechFormBtn.addEventListener('click', () => speechModal.classList.add('active'));
-    closeSpeechFormBtn.addEventListener('click', () => speechModal.classList.remove('active'));
-    speechModal.addEventListener('click', e => { if (e.target === speechModal) speechModal.classList.remove('active'); });
-
-    let ticking = false;
-    function onScroll() {
-      const scrollY = window.scrollY;
-      const blurAmount = Math.min(scrollY / 25, 28);
-      heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
-      fadeEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) el.classList.add('visible');
-      });
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(onScroll);
-        ticking = true;
+    function checkPassword() {
+      if (passwordInput.value === PASSWORD) {
+        sessionStorage.setItem("auth", PASSWORD);
+        loginScreen.style.display = "none";
+        mainContent.style.display = "block";
+      } else {
+        errorMsg.classList.remove("hidden");
       }
-    }, { passive: true });
-    window.addEventListener('load', onScroll);
+    }
+
+    loginBtn.addEventListener("click", checkPassword);
+    passwordInput.addEventListener("keypress", e => {
+      if (e.key === "Enter") checkPassword();
+    });
+
+    if (sessionStorage.getItem("auth") === PASSWORD) {
+      loginScreen.style.display = "none";
+      mainContent.style.display = "block";
+    }
   </script>
 </body>
 </html>
