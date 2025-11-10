@@ -6,13 +6,13 @@
   <title>Alice & Viktor - Bröllop 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- 🌸 Favicon / logga -->
+  <!-- 🖤 Favicon (logga i fliken och mobil) -->
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
 
   <style>
-    html, body {
-      height: 100%;
+    /* 🎨 Grundinställningar */
+    body {
       margin: 0;
       background: #000;
       color: #fff;
@@ -20,11 +20,25 @@
       scroll-behavior: smooth;
     }
 
-    #mainContent { display: none; opacity: 0; transition: opacity 1s ease; }
+    /* Dölj innehållet tills lösenordet godkänts */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
 
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* In-animationsklass */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
+    /* Hero-bilden högst upp */
     .hero-bg {
       width: 100%;
       height: 100%;
@@ -34,6 +48,7 @@
       transition: filter 0.3s ease;
     }
 
+    /* Meddelandet vid klick på Google Forms-knapp */
     .form-message {
       color: #ccc;
       margin-top: 0.75rem;
@@ -43,9 +58,9 @@
     }
     .form-message.show { opacity: 1; }
 
+    /* Loggan i footern */
     footer img {
-      width: 48px;
-      height: auto;
+      width: 50px;
       margin: 0 auto 0.5rem;
       opacity: 0.9;
       transition: opacity 0.3s ease;
@@ -59,40 +74,45 @@
 </head>
 
 <body>
-  <!-- 🔒 Inloggning -->
+  <!-- 🔒 Enkel lösenordsskyddad startsida -->
   <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
-    <h1 class="text-3xl mb-6 tracking-wide">Alice & Viktor</h1>
+    <h1 class="text-3xl mb-6">Alice & Viktor</h1>
     <p class="mb-4 text-gray-300">Ange lösenord för att gå vidare</p>
     <input id="passwordInput" type="password" placeholder="Lösenord"
-           class="text-black px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white w-64 text-center">
-    <button id="loginBtn" class="mt-4 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition">Logga in</button>
+      class="text-black px-4 py-2 rounded-lg focus:ring-2 focus:ring-white w-64 text-center">
+    <button id="loginBtn" class="mt-4 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">Logga in</button>
     <p id="errorMsg" class="text-red-400 mt-4 hidden">Fel lösenord, försök igen.</p>
     <p class="text-gray-500 text-sm mt-8 italic">Endast för inbjudna gäster</p>
   </div>
 
-  <!-- 💍 Hemsidans innehåll -->
+  <!-- 💍 Själva hemsidans innehåll -->
   <div id="mainContent">
+    <!-- Bakgrundsbild som täcker hela sidan -->
     <div class="bg-wrap fixed inset-0 z-0 overflow-hidden bg-black">
       <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
     </div>
 
+    <!-- Hero-sektion (första sidan man ser) -->
     <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
-      <h1 class="text-5xl md:text-6xl font-light tracking-wide mb-2">Alice & Viktor</h1>
+      <h1 class="text-5xl md:text-6xl font-light mb-2">Alice & Viktor</h1>
       <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
     </header>
 
+    <!-- Innehållssektioner -->
     <main class="relative z-10 max-w-4xl mx-auto px-6 py-24 space-y-32 text-center">
+
       <!-- 💒 Vigsel -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
         <div class="grid md:grid-cols-2 gap-6 items-center">
           <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka"
-               class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
+            class="rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
+          <!-- 🗺️ Satellitkarta -->
           <iframe
-            src="https://www.google.com/maps?q=59.44957644637509,11.847544765254858&hl=sv&z=15&output=embed"
+            src="https://www.google.com/maps?q=Västra+Fågelviks+kyrka,+Sverige&hl=sv&t=k&z=10&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-        <p class="leading-relaxed mt-6">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
+        <p class="mt-6">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
       </section>
 
       <!-- 🎉 Bröllopsfest -->
@@ -100,20 +120,24 @@
         <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
         <div class="grid md:grid-cols-2 gap-6 items-center">
           <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors"
-               class="mx-auto rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
+            class="rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover" />
+          <!-- 🗺️ Satellitkarta -->
           <iframe
-            src="https://www.google.com/maps?q=59.319143511136176,11.901954306914318&hl=sv&z=15&output=embed"
+            src="https://www.google.com/maps?q=Strömsborg,+Lennartsfors,+Sverige&hl=sv&t=k&z=10&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-        <p class="leading-relaxed mb-4 mt-6">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
-        <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
-        <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
-        <p class="mb-6">Aaa – 0702223344<br>Bbb – 0703334455</p>
 
+        <p class="mt-6">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
+        <p>Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
+
+        <p class="mt-6">Anmäl bidrag som tal eller annat nedan eller till våra värdar senast <strong>1 maj</strong>:</p>
+        <p>Aaa – 0702223344<br>Bbb – 0703334455</p>
+
+        <!-- ✉️ Knapp till Google Form för talbidrag -->
         <div id="speechMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
         <button
           onclick="openForm('speechMessage','https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform')"
-          class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+          class="bg-white text-black px-6 py-2 rounded-full mt-4 hover:bg-gray-200">
           Anmäl bidrag till festen
         </button>
       </section>
@@ -121,12 +145,13 @@
       <!-- 💌 OSA -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-4">OSA</h2>
-        <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
+        <p class="mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
 
+        <!-- ✉️ Knapp till Google Form för OSA -->
         <div id="osaMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
         <button
           onclick="openForm('osaMessage','https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform')"
-          class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+          class="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">
           Anmäl dig här
         </button>
       </section>
@@ -134,20 +159,21 @@
       <!-- 🏨 Övrig info -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-4">Övrig information</h2>
-        <p class="mb-4">Här kan ni hitta boende:</p>
-        <ul class="space-y-2">
+        <p>Här kan ni hitta boende:</p>
+        <ul class="space-y-2 mt-4">
           <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
           <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
           <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
         </ul>
         <p class="mt-8 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
         <a href="https://presentlistan.nu/FB81E5/" target="_blank"
-           class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
-           Önskelista
+          class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">
+          Önskelista
         </a>
       </section>
     </main>
 
+    <!-- ⚫ Footer -->
     <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
       <img src="assets/logo.png" alt="Alice & Viktor logotyp">
       <p>© 2026 Alice & Viktor</p>
@@ -157,7 +183,7 @@
   <!-- ✨ Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const PASSWORD = "admin";
+      const PASSWORD = "admin"; // Ändra här om du vill byta lösenord
       const loginBtn = document.getElementById("loginBtn");
       const passwordInput = document.getElementById("passwordInput");
       const errorMsg = document.getElementById("errorMsg");
@@ -166,6 +192,7 @@
       const fadeEls = document.querySelectorAll(".fade-in");
       const heroImage = document.getElementById("heroImage");
 
+      // Visa sidan efter rätt lösenord
       function showMainContent() {
         loginScreen.style.display = "none";
         mainContent.style.display = "block";
@@ -173,12 +200,10 @@
         fadeInSections();
       }
 
+      // Kontrollera lösenord
       function checkPassword() {
-        if (passwordInput.value.trim() === PASSWORD) {
-          showMainContent();
-        } else {
-          errorMsg.classList.remove("hidden");
-        }
+        if (passwordInput.value.trim() === PASSWORD) showMainContent();
+        else errorMsg.classList.remove("hidden");
       }
 
       loginBtn.addEventListener("click", checkPassword);
@@ -186,6 +211,7 @@
         if (e.key === "Enter") checkPassword();
       });
 
+      // Fade-in på sektioner när de kommer i bild
       function fadeInSections() {
         fadeEls.forEach(el => {
           const rect = el.getBoundingClientRect();
@@ -193,19 +219,19 @@
         });
       }
 
+      // Blur-effekt på hero-bilden när man scrollar
       window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
-        const blurAmount = Math.min(scrollY / 25, 28);
-        heroImage.style.filter = `blur(${blurAmount}px) brightness(65%)`;
+        const blur = Math.min(window.scrollY / 25, 28);
+        heroImage.style.filter = `blur(${blur}px) brightness(65%)`;
         fadeInSections();
       });
     });
 
+    // Visa meddelande och öppna Google Form i ny flik
     function openForm(messageId, url) {
       const msg = document.getElementById(messageId);
       msg.classList.remove('hidden');
       msg.classList.add('show');
-
       setTimeout(() => msg.classList.remove('show'), 1500);
       setTimeout(() => msg.classList.add('hidden'), 2200);
       setTimeout(() => window.open(url, '_blank'), 500);
