@@ -6,6 +6,10 @@
   <title>Alice & Viktor - Bröllop 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- 🌸 Favicon / logga -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
   <style>
     html, body {
       height: 100%;
@@ -30,7 +34,6 @@
       transition: filter 0.3s ease;
     }
 
-    /* Textmeddelande vid klick på knappar */
     .form-message {
       color: #ccc;
       margin-top: 0.75rem;
@@ -39,6 +42,15 @@
       transition: opacity 0.6s ease;
     }
     .form-message.show { opacity: 1; }
+
+    footer img {
+      width: 48px;
+      height: auto;
+      margin: 0 auto 0.5rem;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    footer img:hover { opacity: 1; }
 
     @media (max-width: 768px) {
       .hero-bg { object-position: center 40%; }
@@ -137,6 +149,7 @@
     </main>
 
     <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
+      <img src="assets/logo.png" alt="Alice & Viktor logotyp">
       <p>© 2026 Alice & Viktor</p>
     </footer>
   </div>
@@ -153,7 +166,6 @@
       const fadeEls = document.querySelectorAll(".fade-in");
       const heroImage = document.getElementById("heroImage");
 
-      // Visa innehåll
       function showMainContent() {
         loginScreen.style.display = "none";
         mainContent.style.display = "block";
@@ -161,7 +173,6 @@
         fadeInSections();
       }
 
-      // Kolla lösenord
       function checkPassword() {
         if (passwordInput.value.trim() === PASSWORD) {
           showMainContent();
@@ -175,7 +186,6 @@
         if (e.key === "Enter") checkPassword();
       });
 
-      // Fade-in för sektioner
       function fadeInSections() {
         fadeEls.forEach(el => {
           const rect = el.getBoundingClientRect();
@@ -183,7 +193,6 @@
         });
       }
 
-      // Blur vid scroll
       window.addEventListener("scroll", () => {
         const scrollY = window.scrollY;
         const blurAmount = Math.min(scrollY / 25, 28);
@@ -192,7 +201,6 @@
       });
     });
 
-    // 🪶 Formulär-popup med fade-text
     function openForm(messageId, url) {
       const msg = document.getElementById(messageId);
       msg.classList.remove('hidden');
