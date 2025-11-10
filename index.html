@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alice & Viktor - Bröllop 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     html, body {
       height: 100%;
@@ -14,9 +15,12 @@
       font-family: system-ui, sans-serif;
       scroll-behavior: smooth;
     }
+
     #mainContent { display: none; opacity: 0; transition: opacity 1s ease; }
+
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
     .hero-bg {
       width: 100%;
       height: 100%;
@@ -25,11 +29,25 @@
       filter: brightness(65%);
       transition: filter 0.3s ease;
     }
+
+    /* Textmeddelande vid klick på knappar */
+    .form-message {
+      color: #ccc;
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .form-message.show { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .hero-bg { object-position: center 40%; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Inloggning -->
+  <!-- 🔒 Inloggning -->
   <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
     <h1 class="text-3xl mb-6 tracking-wide">Alice & Viktor</h1>
     <p class="mb-4 text-gray-300">Ange lösenord för att gå vidare</p>
@@ -40,7 +58,7 @@
     <p class="text-gray-500 text-sm mt-8 italic">Endast för inbjudna gäster</p>
   </div>
 
-  <!-- Hemsidans innehåll -->
+  <!-- 💍 Hemsidans innehåll -->
   <div id="mainContent">
     <div class="bg-wrap fixed inset-0 z-0 overflow-hidden bg-black">
       <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
@@ -51,8 +69,8 @@
       <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
     </header>
 
-    <main class="relative z-10 max-w-4xl mx-auto px-6 py-16 space-y-16 text-center">
-      <!-- Vigsel -->
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-24 space-y-32 text-center">
+      <!-- 💒 Vigsel -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-6">Vigsel</h2>
         <div class="grid md:grid-cols-2 gap-6 items-center">
@@ -62,10 +80,10 @@
             src="https://www.google.com/maps?q=59.44957644637509,11.847544765254858&hl=sv&z=15&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-        <p class="leading-relaxed mt-4">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
+        <p class="leading-relaxed mt-6">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> kl. <strong>14:00</strong>.</p>
       </section>
 
-      <!-- Bröllopsfest -->
+      <!-- 🎉 Bröllopsfest -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-4">Bröllopsfest</h2>
         <div class="grid md:grid-cols-2 gap-6 items-center">
@@ -75,26 +93,33 @@
             src="https://www.google.com/maps?q=59.319143511136176,11.901954306914318&hl=sv&z=15&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-        <p class="leading-relaxed mb-4 mt-4">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
+        <p class="leading-relaxed mb-4 mt-6">På <strong>Strömsborg i Lennartsfors</strong> för inbjudna gäster.</p>
         <p class="mb-4">Inga barn.<br>Klädsel: <strong>Kavaj</strong></p>
         <p class="mb-6">Anmäl bidrag som tal eller annat nedan eller till någon av våra värdar senast <strong>1 maj</strong>:</p>
         <p class="mb-6">Aaa – 0702223344<br>Bbb – 0703334455</p>
-        <button id="openSpeechFormBtn"
-                class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
-                Anmäl bidrag till festen
+
+        <div id="speechMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
+        <button
+          onclick="openForm('speechMessage','https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform')"
+          class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+          Anmäl bidrag till festen
         </button>
       </section>
 
-      <!-- OSA -->
+      <!-- 💌 OSA -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-4">OSA</h2>
         <p class="leading-relaxed mb-6">Vänligen svara senast <strong>1 mars 2026</strong>.</p>
-        <button id="openFormBtn" class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
+
+        <div id="osaMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
+        <button
+          onclick="openForm('osaMessage','https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform')"
+          class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
           Anmäl dig här
         </button>
       </section>
 
-      <!-- Övrig info -->
+      <!-- 🏨 Övrig info -->
       <section class="fade-in">
         <h2 class="text-3xl font-medium mb-4">Övrig information</h2>
         <p class="mb-4">Här kan ni hitta boende:</p>
@@ -103,7 +128,7 @@
           <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
           <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
         </ul>
-        <p class="mt-6 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
+        <p class="mt-8 italic">Vår önskelista gäller, inga egna initiativ, tack!</p>
         <a href="https://presentlistan.nu/FB81E5/" target="_blank"
            class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">
            Önskelista
@@ -116,6 +141,7 @@
     </footer>
   </div>
 
+  <!-- ✨ Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const PASSWORD = "admin";
@@ -127,20 +153,15 @@
       const fadeEls = document.querySelectorAll(".fade-in");
       const heroImage = document.getElementById("heroImage");
 
-      function fadeInSections() {
-        fadeEls.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 100) el.classList.add("visible");
-        });
-      }
-
+      // Visa innehåll
       function showMainContent() {
         loginScreen.style.display = "none";
         mainContent.style.display = "block";
         requestAnimationFrame(() => mainContent.style.opacity = "1");
-        fadeInSections(); // säkerställ att sektioner syns direkt
+        fadeInSections();
       }
 
+      // Kolla lösenord
       function checkPassword() {
         if (passwordInput.value.trim() === PASSWORD) {
           showMainContent();
@@ -154,7 +175,15 @@
         if (e.key === "Enter") checkPassword();
       });
 
-      // Lägg till scroll-effekten efter inloggning
+      // Fade-in för sektioner
+      function fadeInSections() {
+        fadeEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) el.classList.add("visible");
+        });
+      }
+
+      // Blur vid scroll
       window.addEventListener("scroll", () => {
         const scrollY = window.scrollY;
         const blurAmount = Math.min(scrollY / 25, 28);
@@ -162,6 +191,17 @@
         fadeInSections();
       });
     });
+
+    // 🪶 Formulär-popup med fade-text
+    function openForm(messageId, url) {
+      const msg = document.getElementById(messageId);
+      msg.classList.remove('hidden');
+      msg.classList.add('show');
+
+      setTimeout(() => msg.classList.remove('show'), 1500);
+      setTimeout(() => msg.classList.add('hidden'), 2200);
+      setTimeout(() => window.open(url, '_blank'), 500);
+    }
   </script>
 </body>
 </html>
