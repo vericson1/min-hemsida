@@ -18,6 +18,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
 
   <style>
+    /* 🎨 Grundinställningar */
     body {
       margin: 0;
       background: #000;
@@ -26,17 +27,19 @@
       scroll-behavior: smooth;
     }
 
+    /* Rubriker */
     h1, h2, h3, h4, h5, h6 {
       font-family: "Playfair Display", serif;
       letter-spacing: 0.03em;
     }
 
+    /* Visa innehållet direkt (ingen login längre) */
     #mainContent {
-      display: none;
-      opacity: 0;
-      transition: opacity 1s ease;
+      display: block;
+      opacity: 1;
     }
 
+    /* In-animationsklass */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -47,6 +50,7 @@
       transform: translateY(0);
     }
 
+    /* Hero-bilden */
     .hero-bg {
       width: 100%;
       height: 100%;
@@ -56,6 +60,7 @@
       transition: filter 0.3s ease;
     }
 
+    /* Meddelande vid formulärknappar */
     .form-message {
       color: #ccc;
       margin-top: 0.75rem;
@@ -65,61 +70,64 @@
     }
     .form-message.show { opacity: 1; }
 
+    /* Footer-logga */
     footer img {
       width: 50px;
       margin: 0 auto 0.5rem;
       opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    footer img:hover { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .hero-bg { object-position: center 40%; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🔒 Login -->
-  <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
-    <h1 class="text-3xl mb-6">Alice & Viktor</h1>
-    <p class="mb-4 text-gray-300 max-w-prose mx-auto">Ange lösenord för att gå vidare</p>
-    <input id="passwordInput" type="password" placeholder="Lösenord"
-      class="text-black px-4 py-2 rounded-lg w-64 text-center">
-    <button id="loginBtn" class="mt-4 bg-white text-black px-6 py-2 rounded-full">Logga in</button>
-    <p id="errorMsg" class="text-red-400 mt-4 hidden">Fel lösenord</p>
-  </div>
-
   <!-- 💍 Innehåll -->
   <div id="mainContent">
 
+    <!-- Bakgrundsbild -->
     <div class="fixed inset-0 z-0 overflow-hidden bg-black">
-      <img id="heroImage" src="assets/IMG_1395.jpeg" class="hero-bg" />
+      <img id="heroImage" src="assets/IMG_1395.jpeg" alt="Alice och Viktor" class="hero-bg" />
     </div>
 
+    <!-- Hero -->
     <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
-      <h1 class="text-6xl mb-2">Alice & Viktor</h1>
-      <p class="text-2xl">16 maj 2026</p>
+      <h1 class="text-5xl md:text-6xl font-light mb-2">Alice & Viktor</h1>
+      <p class="text-xl md:text-2xl font-light max-w-prose mx-auto">16 maj 2026</p>
     </header>
 
+    <!-- Sektioner -->
     <main class="relative z-10 max-w-4xl mx-auto px-6 py-24 space-y-32 text-center">
 
       <!-- 💒 Vigsel -->
       <section class="fade-in">
         <h2 class="text-3xl mb-6">Vigsel</h2>
 
-        <p class="max-w-prose mx-auto mb-10">
+        <p class="mt-6 max-w-prose mx-auto">
           Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.
           Vigseln börjar kl <strong>14:00</strong>.
         </p>
 
-        <div class="grid md:grid-cols-2 gap-6 items-center">
-          <img src="assets/vfakyrka.jpg" class="rounded-lg h-[270px] object-cover">
-          <iframe src="https://www.google.com/maps?q=Västra+Fågelviks+kyrka,+Sverige&output=embed"
-            class="rounded-lg h-[270px]"></iframe>
+        <!-- Bild + karta under text -->
+        <div class="grid md:grid-cols-2 gap-6 items-center mt-10">
+          <img src="assets/vfakyrka.jpg" alt="Västra Fågelviks kyrka"
+            class="rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover mx-auto" />
+          <iframe
+            src="https://www.google.com/maps?q=Västra+Fågelviks+kyrka,+Sverige&hl=sv&t=h&z=10&output=embed"
+            class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
       </section>
 
       <!-- 🎉 Bröllopsfest -->
       <section class="fade-in">
-        <h2 class="text-3xl mb-6">Bröllopsfest</h2>
+        <h2 class="text-3xl mb-4">Bröllopsfest</h2>
 
-        <p class="max-w-prose mx-auto">
+        <p class="mt-6 max-w-prose mx-auto">
           Efter vigseln fortsätter firandet på <strong>Strömsborg i Lennartsfors</strong>.
         </p>
 
@@ -127,54 +135,129 @@
           Vi tycker om era små men just den här dagen vill vi fira med vuxna.
         </p>
 
-        <p class="mt-6 max-w-prose mx-auto mb-10">
+        <p class="mt-6 max-w-prose mx-auto">
           Klädsel: <strong>Kavaj</strong>
         </p>
 
-        <div class="grid md:grid-cols-2 gap-6 items-center">
-          <img src="assets/stromsborg.jpg" class="rounded-lg h-[270px] object-cover">
-          <iframe src="https://www.google.com/maps?q=Strömsborg,+Lennartsfors,+Sverige&output=embed"
-            class="rounded-lg h-[270px]"></iframe>
+        <!-- Bild + karta under "Klädsel" -->
+        <div class="grid md:grid-cols-2 gap-6 items-center mt-10">
+          <img src="assets/stromsborg.jpg" alt="Strömsborg i Lennartsfors"
+            class="rounded-lg shadow-lg w-full max-w-md h-[270px] object-cover mx-auto" />
+          <iframe
+            src="https://www.google.com/maps?q=Strömsborg,+Lennartsfors,+Sverige&hl=sv&t=h&z=10&output=embed"
+            class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
 
         <p class="mt-10 max-w-prose mx-auto">
           Vill ni bidra till festen med tal, spex eller annat?
         </p>
 
-        <p class="mt-4 max-w-prose mx-auto">
-          Kontakta oss på
-          <a href="mailto:aliceviktor2026@gmail.com" class="underline">aliceviktor2026@gmail.com</a>
+        <p class="mt-6 max-w-prose mx-auto">
+          Anmäl bidrag genom länken nedan eller kontakta våra värdar
+          <strong>Hilda Larsson</strong>, <strong>Maja Sjöstedt</strong>, <strong>Matilda Svensson</strong> och <strong>Sara Rydsmo</strong>
+          på denna mail:
+          <a href="mailto:aliceviktor2026@gmail.com" class="underline hover:text-gray-300">
+            aliceviktor2026@gmail.com
+          </a>
+        </p>
+
+        <!-- ✉️ Knapp till Google Form för bidrag -->
+        <div id="speechMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
+        <button
+          onclick="openForm('speechMessage','https://docs.google.com/forms/d/e/1FAIpQLSeFUfYg0p5jm8LaFH0uPBPQu0pBJ3_D2_7SopkyWot1aGSqWg/viewform')"
+          class="bg-white text-black px-6 py-2 rounded-full mt-4 hover:bg-gray-200">
+          Anmäl bidrag till festen
+        </button>
+      </section>
+
+      <!-- 💌 OSA -->
+      <section class="fade-in">
+        <h2 class="text-3xl mb-4">OSA</h2>
+        <p class="mb-6 max-w-prose mx-auto">
+          Vi vill gärna veta om ni kan komma och fira med oss senast den <strong>1 mars 2026</strong>.
+        </p>
+
+        <div id="osaMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
+        <button
+          onclick="openForm('osaMessage','https://docs.google.com/forms/d/e/1FAIpQLSezFgIakjhJPuMd0G203a_1vJgZiuMzoXvrAnc17PAQE_sRMg/viewform')"
+          class="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">
+          Anmäl dig här
+        </button>
+      </section>
+
+      <!-- 🎁 Önskelista -->
+      <section class="fade-in">
+        <h2 class="text-3xl mb-4">Önskelista</h2>
+        <p class="max-w-prose mx-auto">
+          Vi har samlat saker vi önskar oss i en önskelista nedan. Vänligen registrera köp för att undvika dubbletter.
+        </p>
+
+        <a href="https://presentlistan.nu/FB81E5/" target="_blank"
+          class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">
+          Önskelista
+        </a>
+      </section>
+
+      <!-- 🏨 Övrig info -->
+      <section class="fade-in">
+        <h2 class="text-3xl mb-4">Övrig information</h2>
+        <p class="max-w-prose mx-auto">För långväga gäster finns några förslag på boende här:</p>
+
+        <ul class="space-y-2 mt-4">
+          <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
+          <li><a href="https://turistgarden.com/" target="_blank" class="underline hover:text-gray-300">Turistgården Töcksfors</a></li>
+          <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
+          <li><a href="https://www.airbnb.com/s/%C3%85rj%C3%A4ngs-kommun/homes?refinement_paths%5B%5D=%2Fhomes&place_id=ChIJ_UELPZx4Q0YRZG7WN5RiU4s&location_bb=Qm2ch0FCoz1CbXgVQUGnTQ%3D%3D&acp_id=7f81f55d-f2d1-47db-b749-b77034e76eb0&date_picker_type=calendar&search_type=autocomplete_click" target="_blank" class="underline hover:text-gray-300">AirBnb</a></li>
+        </ul>
+
+        <p class="mt-8 max-w-prose mx-auto">
+          Vi ser fram emot att fira den här dagen med er. Om ni har några andra frågor eller funderingar går det bra att kontakta någon av oss!
         </p>
       </section>
 
     </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
+      <img src="assets/logo.png" alt="Alice & Viktor logotyp">
+      <p class="max-w-prose mx-auto">© 2026 Alice & Viktor</p>
+    </footer>
   </div>
 
+  <!-- Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const ENABLE_PASSWORD = false; // 👈 ändra till false för att stänga av lösenord
-      const PASSWORD = "admin";
+      const fadeEls = document.querySelectorAll(".fade-in");
+      const heroImage = document.getElementById("heroImage");
 
-      const loginScreen = document.getElementById("loginScreen");
-      const mainContent = document.getElementById("mainContent");
-
-      if (!ENABLE_PASSWORD) {
-        loginScreen.style.display = "none";
-        mainContent.style.display = "block";
-        mainContent.style.opacity = "1";
-        return;
+      // Fade-in på sektioner när de kommer i bild
+      function fadeInSections() {
+        fadeEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) el.classList.add("visible");
+        });
       }
 
-      document.getElementById("loginBtn").onclick = () => {
-        if (document.getElementById("passwordInput").value === PASSWORD) {
-          loginScreen.style.display = "none";
-          mainContent.style.display = "block";
-          mainContent.style.opacity = "1";
-        } else {
-          document.getElementById("errorMsg").classList.remove("hidden");
-        }
-      };
+      // Init: visa de som redan syns
+      fadeInSections();
+
+      // Blur-effekt på hero-bilden när man scrollar
+      window.addEventListener("scroll", () => {
+        const blur = Math.min(window.scrollY / 25, 28);
+        heroImage.style.filter = `blur(${blur}px) brightness(65%)`;
+        fadeInSections();
+      });
     });
+
+    // Visa meddelande och öppna länk i ny flik
+    function openForm(messageId, url) {
+      const msg = document.getElementById(messageId);
+      msg.classList.remove('hidden');
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 1500);
+      setTimeout(() => msg.classList.add('hidden'), 2200);
+      setTimeout(() => window.open(url, '_blank'), 500);
+    }
   </script>
 
 </body>
