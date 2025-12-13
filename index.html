@@ -91,12 +91,12 @@
   <!-- 🔒 Login -->
   <div id="loginScreen" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-center z-50">
     <h1 class="text-3xl mb-6">Alice & Viktor</h1>
-    <p class="mb-4 text-gray-300">Ange lösenord för att gå vidare</p>
+    <p class="mb-4 text-gray-300 max-w-prose mx-auto">Ange lösenord för att gå vidare</p>
     <input id="passwordInput" type="password" placeholder="Lösenord"
       class="text-black px-4 py-2 rounded-lg focus:ring-2 focus:ring-white w-64 text-center">
     <button id="loginBtn" class="mt-4 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">Logga in</button>
-    <p id="errorMsg" class="text-red-400 mt-4 hidden">Fel lösenord, försök igen.</p>
-    <p class="text-gray-500 text-sm mt-8 italic">Endast för inbjudna gäster</p>
+    <p id="errorMsg" class="text-red-400 mt-4 hidden max-w-prose mx-auto">Fel lösenord, försök igen.</p>
+    <p class="text-gray-500 text-sm mt-8 italic max-w-prose mx-auto">Endast för inbjudna gäster</p>
   </div>
 
   <!-- 💍 Innehåll -->
@@ -110,7 +110,7 @@
     <!-- Hero -->
     <header class="relative z-10 h-screen flex flex-col items-center justify-center text-center">
       <h1 class="text-5xl md:text-6xl font-light mb-2">Alice & Viktor</h1>
-      <p class="text-xl md:text-2xl font-light">16 maj 2026</p>
+      <p class="text-xl md:text-2xl font-light max-w-prose mx-auto">16 maj 2026</p>
     </header>
 
     <!-- Sektioner -->
@@ -126,7 +126,10 @@
             src="https://www.google.com/maps?q=Västra+Fågelviks+kyrka,+Sverige&hl=sv&t=h&z=10&output=embed"
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
-        <p class="mt-6">Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>. Vigseln börjar kl <strong>14:00</strong>.</p>
+        <p class="mt-6 max-w-prose mx-auto">
+          Vi gifter oss i <strong>Västra Fågelviks kyrka</strong> den <strong>16 maj 2026</strong>.
+          Vigseln börjar kl <strong>14:00</strong>.
+        </p>
       </section>
 
       <!-- 🎉 Bröllopsfest -->
@@ -140,15 +143,23 @@
             class="rounded-lg shadow-lg w-full h-[270px]" loading="lazy"></iframe>
         </div>
 
-        <p class="mt-6">Efter vigseln fortsätter firandet på <strong>Strömsborg i Lennartsfors</strong>.</p>
+        <p class="mt-6 max-w-prose mx-auto">
+          Efter vigseln fortsätter firandet på <strong>Strömsborg i Lennartsfors</strong>.
+        </p>
 
-        <p class="mt-6">Vi tycker om era små men just den här dagen vill vi fira med vuxna.</p>
+        <p class="mt-6 max-w-prose mx-auto">
+          Vi tycker om era små men just den här dagen vill vi fira med vuxna.
+        </p>
 
-        <p class="mt-6">Klädsel: <strong>Kavaj</strong></p>
+        <p class="mt-6 max-w-prose mx-auto">
+          Klädsel: <strong>Kavaj</strong>
+        </p>
 
-        <p class="mt-6">Vill ni bidra till festen med tal, spex eller annat?</p>
+        <p class="mt-6 max-w-prose mx-auto">
+          Vill ni bidra till festen med tal, spex eller annat?
+        </p>
 
-        <p class="mt-6">
+        <p class="mt-6 max-w-prose mx-auto">
           Anmäl bidra genom länken nedan eller kontakta våra värdar
           <strong>Hilda Larsson</strong>, <strong>Maja Sjöstedt</strong>, <strong>Matilda Svensson</strong> och <strong>Sara Rydsmo</strong>
           på denna mail:
@@ -156,7 +167,6 @@
             aliceviktor2026@gmail.com
           </a>
         </p>
-
 
         <!-- ✉️ Knapp till Google Form för bidrag -->
         <div id="speechMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
@@ -170,7 +180,9 @@
       <!-- 💌 OSA -->
       <section class="fade-in">
         <h2 class="text-3xl mb-4">OSA</h2>
-        <p class="mb-6">Vi vill gärna veta om ni kan komma och fira med oss senast den <strong>1 mars 2026</strong>.</p>
+        <p class="mb-6 max-w-prose mx-auto">
+          Vi vill gärna veta om ni kan komma och fira med oss senast den <strong>1 mars 2026</strong>.
+        </p>
 
         <div id="osaMessage" class="form-message hidden">Formuläret öppnas i ny flik …</div>
         <button
@@ -183,7 +195,9 @@
       <!-- 🎁 Önskelista -->
       <section class="fade-in">
         <h2 class="text-3xl mb-4">Önskelista</h2>
-        <p>Vi har samlat saker vi önskar oss i en önskelista nedan. Vänligen registrera köp för att undvika dubbletter.</p>
+        <p class="max-w-prose mx-auto">
+          Vi har samlat saker vi önskar oss i en önskelista nedan. Vänligen registrera köp för att undvika dubbletter.
+        </p>
 
         <a href="https://presentlistan.nu/FB81E5/" target="_blank"
           class="inline-block mt-6 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200">
@@ -194,7 +208,7 @@
       <!-- 🏨 Övrig info -->
       <section class="fade-in">
         <h2 class="text-3xl mb-4">Övrig information</h2>
-        <p>För långväga gäster finns några förslag på boende här:</p>
+        <p class="max-w-prose mx-auto">För långväga gäster finns några förslag på boende här:</p>
 
         <ul class="space-y-2 mt-4">
           <li><a href="https://hotellarjang.com/" target="_blank" class="underline hover:text-gray-300">Hotell Årjäng</a></li>
@@ -202,7 +216,9 @@
           <li><a href="https://firstcamp.se/destinationer/sommarvik-arjang" target="_blank" class="underline hover:text-gray-300">Sommarvik Årjäng</a></li>
         </ul>
 
-        <p class="mt-8">Vi ser fram emot att fira den här dagen med er. Om ni har några andra frågor eller funderingar går det bra att kontakta någon av oss!</p>
+        <p class="mt-8 max-w-prose mx-auto">
+          Vi ser fram emot att fira den här dagen med er. Om ni har några andra frågor eller funderingar går det bra att kontakta någon av oss!
+        </p>
       </section>
 
     </main>
@@ -210,7 +226,7 @@
     <!-- Footer -->
     <footer class="relative z-10 text-center py-8 text-sm text-gray-300/80 border-t border-white/10">
       <img src="assets/logo.png" alt="Alice & Viktor logotyp">
-      <p>© 2026 Alice & Viktor</p>
+      <p class="max-w-prose mx-auto">© 2026 Alice & Viktor</p>
     </footer>
   </div>
 
